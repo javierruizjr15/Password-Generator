@@ -6,27 +6,23 @@
 // next ?: do u want uppercase:
 // nxt ?: numeric
 // nxt ?: special char
-// 
+
 
 var charlengthR;
-// // = document.getElementById("charlengthR").value
-// var lwrcaseR = document.getElementById("lwrcase").confirm
-// var uprcaseR = document.getElementById("uprcase").confirm
-// var numcaseR = document.getElementById("numcase").confirm
-// var specialcaseR = document.getElementById("specialcase").confirm
-
-
+// here is where the selected length will go
 var charlength;
+// Here is the options that will be able to go into CharlengthR
 var lwrcase = 'abcdefghijklmnopqrstuvwxyz';
 var uprcase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var numcase = '1234567890';
 var specialcase = '!@#$%^&*()';
+// here is where the pool of selected criteria will go
 var gpassSet = "";
-
+// this will start the prompt events
 var genreatedpass;
 document.getElementById('generate').addEventListener('click', generatepassword = () => {
 
-
+// these prompts will deteremine if the var is truthy or falsy so it can go into the pool bank of gpassset
   charlengthR = prompt('Input length of password between 8-128 characters');
   console.log('charlength', charlengthR);
 
@@ -41,9 +37,9 @@ document.getElementById('generate').addEventListener('click', generatepassword =
 
   specialcaseR = confirm('Do you want the password to contain spcecial characters?');
   console.log('special char', specialcaseR);
-
+// this is where the generated password will apear
   let genreatedpass = '';
-
+// if statements that read truthy falsy results based on the comfirmation value
   if (lwrcaseR) {
     gpassSet += lwrcase
   }
@@ -57,7 +53,7 @@ document.getElementById('generate').addEventListener('click', generatepassword =
     gpassSet += specialcase
   }
   console.log("test set", gpassSet);
-
+// for loop that randomly pulls characters from the gpassset, this will loop at the length detemined my carlengthR.value
   for (let i = 0; i < charlengthR; i++) {
     genreatedpass += gpassSet[Math.floor(Math.random() * gpassSet.length)]
   }
