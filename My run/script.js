@@ -16,15 +16,25 @@ var lwrcase = 'abcdefghijklmnopqrstuvwxyz';
 var uprcase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 var numcase = '1234567890';
 var specialcase = '!@#$%^&*()';
-// here is where the pool of selected criteria will go
-var gpassSet = "";
+
+
 // this will start the prompt events
 var genreatedpass;
 document.getElementById('generate').addEventListener('click', generatepassword = () => {
+  event.preventDefault()
 
-// these prompts will deteremine if the var is truthy or falsy so it can go into the pool bank of gpassset
+  // here is where the pool of selected criteria will go
+  var gpassSet = "";
+  // these prompts will deteremine if the var is truthy or falsy so it can go into the pool bank of gpassset
+
+
+
   charlengthR = prompt('Input length of password between 8-128 characters');
   console.log('charlength', charlengthR);
+
+  while (charlengthR < 8 || charlengthR > 128) { generatepassword() }
+
+
 
   lwrcaseR = confirm('Do you want the passsword to contain lowercase?');
   console.log('lowercase', lwrcaseR);
@@ -37,9 +47,9 @@ document.getElementById('generate').addEventListener('click', generatepassword =
 
   specialcaseR = confirm('Do you want the password to contain spcecial characters?');
   console.log('special char', specialcaseR);
-// this is where the generated password will apear
+  // this is where the generated password will apear
   let genreatedpass = '';
-// if statements that read truthy falsy results based on the comfirmation value
+  // if statements that read truthy falsy results based on the comfirmation value
   if (lwrcaseR) {
     gpassSet += lwrcase
   }
@@ -53,12 +63,13 @@ document.getElementById('generate').addEventListener('click', generatepassword =
     gpassSet += specialcase
   }
   console.log("test set", gpassSet);
-// for loop that randomly pulls characters from the gpassset, this will loop at the length detemined my carlengthR.value
+  // for loop that randomly pulls characters from the gpassset, this will loop at the length detemined my carlengthR.value
   for (let i = 0; i < charlengthR; i++) {
     genreatedpass += gpassSet[Math.floor(Math.random() * gpassSet.length)]
   }
-  console.log("Test pass", genreatedpass);
-  document.getElementById("password").textContent = genreatedpass
 
+
+  console.log("Test pass", genreatedpass);
+  document.getElementById("password").textContent = genreatedpass;
 
 })
